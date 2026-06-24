@@ -3,33 +3,240 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OnjLouis</title>
+  <title>OnjLouis Projects</title>
   <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #4b5563;
+      --border: #d8e0ea;
+      --link: #075ca8;
+      --heading: #102a43;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --panel: #1f2937;
+        --text: #f3f4f6;
+        --muted: #cbd5e1;
+        --border: #374151;
+        --link: #8cc8ff;
+        --heading: #ffffff;
+      }
+    }
     body {
+      margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
-      max-width: 46rem;
-      margin: 3rem auto;
-      padding: 0 1rem;
-      color: #1f2933;
-      background: #f7f9fb;
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg);
     }
     main {
-      background: #fff;
-      border: 1px solid #d9e2ec;
+      width: min(68rem, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+    header {
+      margin-bottom: 2rem;
+    }
+    h1, h2, h3 {
+      color: var(--heading);
+      line-height: 1.2;
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+    }
+    h2 {
+      margin: 2rem 0 1rem;
+      padding-top: 0.25rem;
+      border-top: 2px solid var(--border);
+      font-size: 1.5rem;
+    }
+    h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.15rem;
+    }
+    p {
+      margin: 0 0 0.75rem;
+    }
+    .intro {
+      max-width: 48rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .project-list {
+      display: grid;
+      gap: 1rem;
+    }
+    article {
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1rem;
+    }
+    .links {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.85rem;
     }
     a {
-      color: #0b5cad;
+      color: var(--link);
+      font-weight: 600;
+    }
+    footer {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>OnjLouis</h1>
-    <p>This GitHub Pages site is live.</p>
-    <p>Project repositories are available on <a href="https://github.com/OnjLouis">GitHub</a>.</p>
+    <header>
+      <h1>OnjLouis Projects</h1>
+      <p class="intro">Accessible Windows tools, NVDA utilities, and small focused apps built around keyboard-first workflows, screen-reader use, and practical day-to-day problem solving.</p>
+    </header>
+
+    <h2>Apps</h2>
+    <div class="project-list">
+      <article>
+        <h3>Sensor Readout</h3>
+        <p>Accessibility-first Windows hardware and system information tool for sensors, storage health, USB, network, Bluetooth, audio, display, diagnostics, support reports, and supported fan control.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/accessible-sensor-readout">Repository</a>
+          <a href="https://github.com/OnjLouis/accessible-sensor-readout/releases">Downloads</a>
+          <a href="https://onj.me/srstats/">Public stats</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>Clipman</h3>
+        <p>Portable clipboard manager for fast keyboard and screen-reader use, with history, file history, sounds, hotkeys, filtering, search, and shared-folder workflows across machines.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/Clipman">Repository</a>
+          <a href="https://github.com/OnjLouis/Clipman/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>NVDA Sync</h3>
+        <p>Portable Windows app for syncing selected NVDA configuration components from one primary NVDA folder to up to five secondary or portable NVDA folders.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/NVDASync">Repository</a>
+          <a href="https://github.com/OnjLouis/NVDASync/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>MoveToMidi</h3>
+        <p>Accessible Windows utility for converting Ableton Move and Ableton Note <code>.ablbundle</code> sets into standard MIDI files.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/MoveToMidi">Repository</a>
+          <a href="https://github.com/OnjLouis/MoveToMidi/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>MidiToMove</h3>
+        <p>Accessible companion utility for converting standard MIDI files into Ableton Move and Ableton Note bundle files.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/MidiToMove">Repository</a>
+          <a href="https://github.com/OnjLouis/MidiToMove/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>MidiCleaner</h3>
+        <p>Single-file Windows MIDI cleanup utility with a screen-reader-friendly interface for tidying MIDI files before moving them into other workflows.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/midi-cleaner">Repository</a>
+          <a href="https://github.com/OnjLouis/midi-cleaner/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>Sky Scout</h3>
+        <p>Local-first web app for discovering Sky Q boxes on a LAN, browsing box metadata, switching channels, and sending remote-control commands from a browser.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/sky-scout">Repository</a>
+        </div>
+      </article>
+    </div>
+
+    <h2>NVDA Add-ons</h2>
+    <div class="project-list">
+      <article>
+        <h3>FastRead</h3>
+        <p>Speaks frequently changing text immediately, useful for dashboards, meters, terminal output, progress text, and other live readouts where waiting for normal speech is too slow.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/fastRead">Repository</a>
+          <a href="https://github.com/OnjLouis/fastRead/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>soundWave</h3>
+        <p>Renders text to audio using installed NVDA speech synthesizers, with clipboard, file, and typed-text input, plus WAV output and optional MP3 export through ffmpeg.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/soundWave">Repository</a>
+          <a href="https://github.com/OnjLouis/soundWave/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>WikiFusion</h3>
+        <p>Combines Wikipedia and Wiktionary lookup in one NVDA dialog, with smart routing, a results tree, optional media playback, and optional lighter sources.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/wikiFusion">Repository</a>
+          <a href="https://github.com/OnjLouis/wikiFusion/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>NVDA Composer</h3>
+        <p>Keyboard-first, screen-reader-friendly music sketchpad for NVDA, with note entry, playback, saving, and a separate web version for non-NVDA users.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/nvdaComposer">Repository</a>
+          <a href="https://github.com/OnjLouis/nvdaComposer/releases">Downloads</a>
+          <a href="https://onj.me/nc">Web version</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>Minuter</h3>
+        <p>Optional time cues while you work, including second ticks or beeps, minute chimes, end-of-minute beeps, and spoken seconds.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/Minuter">Repository</a>
+          <a href="https://github.com/OnjLouis/Minuter/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>Date Parser</h3>
+        <p>Resolves plain-English date expressions and calendar dates into concrete dates, including relative offsets, weekdays, counted weekdays, and common date formats.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/dateParser">Repository</a>
+          <a href="https://github.com/OnjLouis/dateParser/releases">Downloads</a>
+        </div>
+      </article>
+
+      <article>
+        <h3>News Fusion</h3>
+        <p>UK-focused news feed reader for NVDA with a fast tree-based headlines view and clean article text where available.</p>
+        <div class="links">
+          <a href="https://github.com/OnjLouis/newsFusion">Repository</a>
+          <a href="https://github.com/OnjLouis/newsFusion/releases">Downloads</a>
+        </div>
+      </article>
+    </div>
+
+    <footer>
+      <p>All projects are published under the OnjLouis GitHub account. Check each repository for current releases, manuals, source code, and project-specific notes.</p>
+    </footer>
   </main>
 </body>
 </html>
