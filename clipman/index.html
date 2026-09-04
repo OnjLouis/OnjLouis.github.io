@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clipman is a free, accessible clipboard manager for Windows, macOS, Linux, Android, iPhone and iPad, with private local history and optional encrypted self-hosted sync.">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14191f" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="Clipman - Accessible clipboard history">
+  <meta property="og:description" content="Fast, searchable clipboard history across desktop and mobile, designed for keyboard and screen-reader use.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://onj.me/clipman/">
+  <meta property="og:image" content="https://onj.me/clipman/clipman-icon.png">
+  <link rel="canonical" href="https://onj.me/clipman/">
+  <link rel="icon" href="clipman-icon.png">
+  <title>Clipman - Accessible clipboard history</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f4f7fb;
+      --surface: #ffffff;
+      --surface-strong: #eaf2fb;
+      --text: #17202a;
+      --muted: #465466;
+      --border: #ccd7e3;
+      --primary: #075ca8;
+      --primary-text: #ffffff;
+      --accent: #167047;
+      --focus: #b34900;
+      --shadow: rgba(24, 39, 56, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #14191f;
+        --surface: #1e252d;
+        --surface-strong: #263746;
+        --text: #f4f7fa;
+        --muted: #c3ced9;
+        --border: #465563;
+        --primary: #8bc8ff;
+        --primary-text: #10202e;
+        --accent: #7ed7aa;
+        --focus: #ffb46e;
+        --shadow: rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-underline-offset: 0.18em;
+      text-decoration-thickness: 0.08em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 0.13em;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -5rem;
+      z-index: 10;
+      padding: 0.65rem 0.9rem;
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .page-width {
+      width: min(68rem, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .site-nav {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .site-nav .page-width {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 3.5rem;
+    }
+
+    .site-name {
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2.5rem 0 2rem;
+    }
+
+    .app-icon {
+      width: 7.5rem;
+      height: 7.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 0.35rem 1rem var(--shadow);
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.65rem;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1.65rem;
+    }
+
+    h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.16rem;
+    }
+
+    p {
+      margin: 0 0 0.85rem;
+    }
+
+    .tagline {
+      max-width: 47rem;
+      margin: 0.45rem 0 1.2rem;
+      color: var(--muted);
+      font-size: 1.14rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .action {
+      display: inline-block;
+      min-height: 2.8rem;
+      padding: 0.56rem 0.9rem;
+      border: 2px solid var(--primary);
+      border-radius: 6px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .action.primary {
+      background: var(--primary);
+      color: var(--primary-text);
+    }
+
+    .platforms {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface-strong);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 2.2rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .lead {
+      max-width: 48rem;
+      color: var(--muted);
+    }
+
+    .feature-grid,
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 2rem;
+      margin-top: 1.4rem;
+    }
+
+    .feature {
+      padding-left: 0.9rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .feature p,
+    .download p {
+      color: var(--muted);
+    }
+
+    .download {
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .download p:last-child,
+    .feature p:last-child {
+      margin-bottom: 0;
+    }
+
+    .steps {
+      max-width: 48rem;
+      padding-left: 1.5rem;
+    }
+
+    .steps li {
+      margin-bottom: 0.65rem;
+      padding-left: 0.25rem;
+    }
+
+    footer {
+      padding: 1.6rem 0 2.4rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      margin: 0 0 0.7rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    @media (max-width: 44rem) {
+      .site-nav .page-width,
+      .intro {
+        align-items: flex-start;
+      }
+
+      .site-nav .page-width {
+        flex-direction: column;
+        padding: 0.8rem 0;
+      }
+
+      .intro {
+        grid-template-columns: 4.75rem minmax(0, 1fr);
+        gap: 1rem;
+        padding-top: 1.7rem;
+      }
+
+      .app-icon {
+        width: 4.75rem;
+        height: 4.75rem;
+      }
+
+      h1 {
+        font-size: 2.15rem;
+      }
+
+      .actions {
+        grid-column: 1 / -1;
+      }
+
+      .feature-grid,
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="page-width">
+      <a class="site-name" href="https://onj.me">Andre Louis</a>
+      <ul class="nav-links">
+        <li><a href="manual.html">Manual</a></li>
+        <li><a href="https://github.com/OnjLouis/Clipman/releases">Downloads</a></li>
+        <li><a href="https://github.com/OnjLouis/Clipman">Source</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <header class="page-width intro">
+      <img class="app-icon" src="clipman-icon.png" width="120" height="120" alt="Clipman app icon">
+      <div>
+        <h1>Clipman</h1>
+        <p class="tagline">Accessible clipboard history that stays useful: fast to search, comfortable with a keyboard or screen reader, private by default, and available across desktop and mobile.</p>
+        <div class="actions" aria-label="Primary downloads">
+          <a class="action primary" href="https://apps.apple.com/app/clipman/id6793250105">Get it on the App Store</a>
+          <a class="action" href="https://github.com/OnjLouis/Clipman/releases">Other downloads</a>
+          <a class="action" href="manual.html">Read the manual</a>
+        </div>
+      </div>
+      <p class="platforms">Windows, macOS, Linux, Android, iPhone and iPad</p>
+    </header>
+
+    <section>
+      <div class="page-width">
+        <h2>A clipboard history built for daily use</h2>
+        <p class="lead">Clipman keeps ordinary copy and paste simple, then adds the organisation and cross-device tools that become useful when clipboard history is part of your working day.</p>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Designed for accessibility</h3>
+            <p>Controls expose meaningful names, roles, states and values. History supports concise screen-reader speech, predictable keyboard movement, search and type-to-jump navigation.</p>
+          </div>
+          <div class="feature">
+            <h3>More than plain text</h3>
+            <p>Keep text, named links, rich text and images organised in focused views. Desktop file history remembers copied files without sending machine-specific paths to other devices.</p>
+          </div>
+          <div class="feature">
+            <h3>Local by default</h3>
+            <p>No account is required. History can remain entirely on one device, and Clipman contains no advertising, developer analytics or third-party tracking.</p>
+          </div>
+          <div class="feature">
+            <h3>Encrypted sync when you want it</h3>
+            <p>An optional self-hosted Clipman Server can merge history across platforms. Encryption happens on your devices; the server stores the database but cannot read its contents.</p>
+          </div>
+          <div class="feature">
+            <h3>Fast retrieval</h3>
+            <p>Pin, name, edit, group, filter and reorder important entries. Quick Paste and templates put frequently used content into the active application without a trip through history.</p>
+          </div>
+          <div class="feature">
+            <h3>Practical privacy controls</h3>
+            <p>Ignore selected applications, exclude likely sensitive values, encrypt history, or keep short private snippets in machine-local Secrets instead of shared history.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="page-width">
+        <h2>Choose your build</h2>
+        <div class="download-grid">
+          <div class="download">
+            <h3>iPhone and iPad</h3>
+            <p>Install the official iOS and iPadOS release from Apple.</p>
+            <p><a href="https://apps.apple.com/app/clipman/id6793250105">Download from the App Store</a></p>
+          </div>
+          <div class="download">
+            <h3>Windows, macOS, Linux and Android</h3>
+            <p>Download the current desktop package or Android APK from GitHub Releases. The macOS build is signed and notarised.</p>
+            <p><a href="https://github.com/OnjLouis/Clipman/releases">Browse current releases</a></p>
+          </div>
+          <div class="download">
+            <h3>Clipman Server</h3>
+            <p>Run optional encrypted sync on Linux, Windows, macOS, Raspberry Pi, a NAS or a VPS.</p>
+            <p><a href="https://onjlouis.github.io/Clipman/server/manual.html">Read the server manual</a></p>
+          </div>
+          <div class="download">
+            <h3>Clipman CLI</h3>
+            <p>Use the same encrypted server history from scripts, terminals, headless systems and AI-agent workflows.</p>
+            <p><a href="https://github.com/OnjLouis/Clipman/releases/tag/cli-v0.9.0">Get the command-line preview</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="page-width">
+        <h2>Start in a minute</h2>
+        <ol class="steps">
+          <li>Install the build for your platform and open Clipman.</li>
+          <li>Copy a few pieces of text, then open history using the shortcut shown in the app or its menu.</li>
+          <li>Choose an entry to return it to the clipboard. That is enough for ordinary local use.</li>
+        </ol>
+        <p class="lead">Settings cover optional views, sounds, encryption, automatic paste, backups and synchronization. The <a href="manual.html">complete manual</a> documents every platform and command.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-width">
+      <ul class="footer-links">
+        <li><a href="https://github.com/OnjLouis/Clipman">Source code</a></li>
+        <li><a href="https://github.com/OnjLouis/Clipman/issues">Report a problem</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="https://onj.me/contact">Contact</a></li>
+        <li><a href="https://onj.me/donate">Support development</a></li>
+      </ul>
+      <p>Clipman is free and open source under the MIT License.</p>
+    </div>
+  </footer>
+</body>
+</html>
