@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Support Andre Louis and his free, accessible software through PayPal or GitHub Sponsors.">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14191f" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="Support Andre Louis">
+  <meta property="og:description" content="Choose PayPal or GitHub Sponsors to support Andre's free, accessible software.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://onj.me/donate/">
+  <link rel="canonical" href="https://onj.me/donate/">
+  <title>Support Andre Louis</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f4f7fb;
+      --surface: #ffffff;
+      --text: #17202a;
+      --muted: #465466;
+      --border: #ccd7e3;
+      --primary: #075ca8;
+      --primary-text: #ffffff;
+      --accent: #167047;
+      --focus: #b34900;
+      --shadow: rgba(24, 39, 56, 0.1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #14191f;
+        --surface: #1e252d;
+        --text: #f4f7fa;
+        --muted: #c3ced9;
+        --border: #465563;
+        --primary: #8bc8ff;
+        --primary-text: #10202e;
+        --accent: #7ed7aa;
+        --focus: #ffb46e;
+        --shadow: rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-underline-offset: 0.18em;
+      text-decoration-thickness: 0.08em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 0.13em;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -5rem;
+      z-index: 10;
+      padding: 0.65rem 0.9rem;
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .page-width {
+      width: min(54rem, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    nav {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    nav .page-width {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 3.5rem;
+    }
+
+    nav a:first-child {
+      color: var(--text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    header {
+      padding: 3rem 0 2.2rem;
+      text-align: center;
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 0.65rem;
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      margin: 0 0 0.45rem;
+      font-size: 1.35rem;
+    }
+
+    p {
+      margin: 0 0 0.85rem;
+    }
+
+    .intro {
+      max-width: 41rem;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .choice {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 15rem;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 0.35rem 1rem var(--shadow);
+    }
+
+    .choice p {
+      color: var(--muted);
+    }
+
+    .choice .action {
+      display: inline-block;
+      margin-top: auto;
+      padding: 0.6rem 0.9rem;
+      border: 2px solid var(--primary);
+      border-radius: 6px;
+      background: var(--primary);
+      color: var(--primary-text);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .note {
+      padding: 1.3rem 0 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .note p {
+      max-width: 46rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 1.4rem 0 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    @media (max-width: 38rem) {
+      nav .page-width {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0.75rem 0;
+      }
+
+      header {
+        padding-top: 2rem;
+        text-align: left;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+      }
+
+      .choices {
+        grid-template-columns: 1fr;
+      }
+
+      .choice {
+        min-height: 0;
+      }
+
+      .choice .action {
+        margin-top: 0.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav aria-label="Site navigation">
+    <div class="page-width">
+      <a href="https://onj.me">Andre Louis</a>
+      <a href="https://onj.me/software">Free software</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <header class="page-width">
+      <h1>Support Andre Louis</h1>
+      <p class="intro">My software is free to use, without advertising or locked features. If it has made something easier or more accessible for you, you can support its continued development through either of these services.</p>
+    </header>
+
+    <div class="page-width choices">
+      <section class="choice">
+        <h2>PayPal</h2>
+        <p>Send a contribution directly through PayPal. PayPal handles the transaction and payment details.</p>
+        <a class="action" href="https://www.paypal.me/AndreLouis">Support through PayPal</a>
+      </section>
+
+      <section class="choice">
+        <h2>GitHub Sponsors</h2>
+        <p>Support my open-source work through GitHub using the contribution options available on my sponsor profile.</p>
+        <a class="action" href="https://github.com/sponsors/OnjLouis">Support through GitHub</a>
+      </section>
+    </div>
+
+    <section class="note">
+      <div class="page-width">
+        <h2>Entirely optional</h2>
+        <p>Supporting development does not unlock features or change the software you receive. Both providers process payments on their own websites; this site does not collect or store card details.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-width">
+      <ul class="footer-links">
+        <li><a href="https://onj.me/software">Browse software</a></li>
+        <li><a href="https://onj.me/contact">Contact Andre</a></li>
+        <li><a href="https://github.com/OnjLouis">GitHub profile</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
